@@ -6,6 +6,6 @@ import java.util.List;
 
 @Data
 public class DeckDto {
-    private Integer idDeck;
+    private Long idDeck;
     private List<CardDto> cards;
 }

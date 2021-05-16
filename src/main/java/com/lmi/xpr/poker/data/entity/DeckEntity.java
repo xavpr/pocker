@@ -13,7 +13,7 @@ public class DeckEntity {
     @Id
     @Column(name = "id_deck")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDeck;
+    private Long idDeck;
 
     @OneToMany(mappedBy = "deck", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CardEntity> cards;
