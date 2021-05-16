@@ -24,7 +24,7 @@ public class DeckResource {
 
     @PostMapping
     @ApiOperation("Create a deck")
-    public DeckDto validateCard() {
+    public DeckDto createDeck() {
         return deckDtoMapper.toDto(deckService.createDeck());
     }
 

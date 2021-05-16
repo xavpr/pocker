@@ -1,5 +1,8 @@
 DROP TABLE IF EXISTS card CASCADE ;
 DROP TABLE IF EXISTS deck CASCADE ;
+DROP TABLE IF EXISTS player CASCADE ;
+DROP TABLE IF EXISTS game CASCADE ;
+DROP TABLE IF EXISTS game_player CASCADE ;
 
 CREATE TABLE deck (
     id_deck INT AUTO_INCREMENT PRIMARY KEY
@@ -19,5 +22,13 @@ CREATE TABLE player (
     last_name VARCHAR (50)
 );
 
+CREATE TABLE game (
+    id_game INT AUTO_INCREMENT PRIMARY KEY
+);
 
-
+CREATE TABLE game_player (
+    id_player INT,
+    id_game INT,
+    foreign key (id_player) references player(id_player),
+    foreign key (id_game) references game(id_game)
+);

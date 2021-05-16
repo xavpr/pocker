@@ -23,4 +23,9 @@ public class PlayerServiceImpl implements PlayerService {
     public List<Player> getAll() {
         return repository.getAll();
     }
+
+    @Override
+    public boolean existsById(Long idPlayer) {
+        return repository.existsById(idPlayer);
+    }
 }

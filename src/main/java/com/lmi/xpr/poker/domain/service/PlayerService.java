@@ -7,4 +7,5 @@ import java.util.List;
 public interface PlayerService {
     Player createPlayer(Player player);
     List<Player> getAll();
+    boolean existsById(Long idPlayer);
 }

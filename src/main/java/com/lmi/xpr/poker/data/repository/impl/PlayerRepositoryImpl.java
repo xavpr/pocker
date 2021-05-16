@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -30,5 +31,15 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     @Override
     public List<Player> getAll() {
         return mapper.toModels(repository.findAll());
+    }
+
+    @Override
+    public Optional<Player> getById(Long idPlayer) {
+        return Optional.ofNullable(mapper.toModel(repository.findById(idPlayer).orElse(null)));
+    }
+
+    @Override
+    public boolean existsById(Long idPlayer) {
+        return repository.existsById(idPlayer);
     }
 }

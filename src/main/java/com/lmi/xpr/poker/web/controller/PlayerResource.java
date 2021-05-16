@@ -1,6 +1,5 @@
 package com.lmi.xpr.poker.web.controller;
 
-import com.lmi.xpr.poker.domain.model.Player;
 import com.lmi.xpr.poker.domain.service.PlayerService;
 import com.lmi.xpr.poker.web.dto.PlayerDto;
 import com.lmi.xpr.poker.web.mapper.PlayerDtoMapper;
