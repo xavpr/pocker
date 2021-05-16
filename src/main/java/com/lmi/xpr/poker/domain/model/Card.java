@@ -11,6 +11,7 @@ public class Card {
     private Long idCard;
     private Suits suit;
     private Faces face;
+    private boolean alreadyDealt;
 
     public Card(Suits suit, Faces face) {
         this.suit = suit;

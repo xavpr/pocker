@@ -29,22 +29,28 @@ public class GameResource {
         return mapper.toDto(service.createGame());
     }
 
-    @PutMapping("{id}/add-player/{idPlayer}")
+    @PutMapping("{idGame}/player/{idPlayer}/add")
     @ApiOperation("Add player to a game")
-    public GameDto addPlayer(@GameExists @PathVariable long id, @PlayerExists @PathVariable long idPlayer) {
-     return mapper.toDto(service.addPlayerToGame(id, idPlayer));
+    public GameDto addPlayer(@GameExists @PathVariable long idGame, @PlayerExists @PathVariable long idPlayer) {
+     return mapper.toDto(service.addPlayerToGame(idGame, idPlayer));
     }
 
-    @PutMapping("{id}/remove-player/{idPlayer}")
+    @PutMapping("{idGame}/player/{idPlayer}/remove")
     @ApiOperation("Remove player from a game")
-    public GameDto removePlayer(@GameExists @PathVariable long id, @PlayerExists @PathVariable long idPlayer) {
-        return mapper.toDto(service.addPlayerToGame(id, idPlayer));
+    public GameDto removePlayer(@GameExists @PathVariable long idGame, @PlayerExists @PathVariable long idPlayer) {
+        return mapper.toDto(service.addPlayerToGame(idGame, idPlayer));
     }
 
-    @PutMapping("{id}/add-deck/{idDeck}")
+    @PutMapping("{idGame}/deck/{idDeck}/add")
     @ApiOperation("Add deck to a game")
-    public GameDto addDeck(@GameExists @PathVariable long id, @DeckExists @PathVariable long idDeck) {
-        return mapper.toDto(service.addDeckToGame(id, idDeck));
+    public GameDto addDeck(@GameExists @PathVariable long idGame, @DeckExists @PathVariable long idDeck) {
+        return mapper.toDto(service.addDeckToGame(idGame, idDeck));
+    }
+
+    @PutMapping("{idGame}/player/{idPlayer}/deal-card")
+    @ApiOperation("Deal a card from deck game to given player")
+    public void dealCard(@GameExists @PathVariable long idGame, @PlayerExists @PathVariable long idPlayer) {
+        service.dealCard(idGame, idPlayer);
     }
 
 }

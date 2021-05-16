@@ -42,4 +42,12 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     public boolean existsById(Long idPlayer) {
         return repository.existsById(idPlayer);
     }
+
+    @Override
+    public Player savePlayer(Player player) {
+        log.info("Saving player: {} - {}", player.getFirstName(), player.getLastName());
+        Player result = mapper.toModel(repository.save(mapper.toEntity(player)));
+        log.info("Player successfully saved - id: {}", result.getIdPlayer());
+        return result;
+    }
 }

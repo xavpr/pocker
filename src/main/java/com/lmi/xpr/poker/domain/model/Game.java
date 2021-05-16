@@ -2,6 +2,7 @@ package com.lmi.xpr.poker.domain.model;
 
 import lombok.Data;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Data
@@ -15,5 +16,11 @@ public class Game {
     public void removePlayerById(Long idPlayer) {
         players.removeIf(p -> p.getIdPlayer().equals(idPlayer));
     }
-    public void addDeck(Deck deck){ decks.add(deck); }
+    public void addDeck(Deck deck) {
+        decks.add(deck);
+    }
+    public Optional<Card> dealCardFromDecks() {
+        return decks.stream().flatMap(d -> d.getCards().stream())
+                .filter(c -> !c.isAlreadyDealt()).findFirst();
+    }
 }

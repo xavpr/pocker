@@ -61,4 +61,13 @@ public class GameServiceImpl implements GameService {
         game.addDeck(deck);
         return gameRepository.saveGame(game);
     }
+
+    @Override
+    public void dealCard(Long idGame, Long idPlayer) {
+        log.info("Adding deal card to player {} for game {}", idPlayer, idGame);
+        Game game = gameRepository.getById(idGame).get();
+        Player player = playerRepository.getById(idPlayer).get();
+        player.receiveACard(game.dealCardFromDecks());
+        playerRepository.savePlayer(player);
+    }
 }

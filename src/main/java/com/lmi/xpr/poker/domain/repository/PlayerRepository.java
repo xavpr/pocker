@@ -10,4 +10,5 @@ public interface PlayerRepository {
     List<Player> getAll();
     Optional<Player> getById(Long idPlayer);
     boolean existsById(Long idPlayer);
+    Player savePlayer(Player player);
 }

@@ -3,6 +3,7 @@ package com.lmi.xpr.poker.data.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,5 +20,9 @@ public class PlayerEntity {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @OneToMany
+    @JoinColumn(name = "fk_player")
+    private Set<CardEntity> cards;
 
 }

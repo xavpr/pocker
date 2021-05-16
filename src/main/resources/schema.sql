@@ -15,19 +15,23 @@ CREATE TABLE deck (
     foreign key (fk_game) references game(id_game)
 );
 
+CREATE TABLE player (
+                        id_player INT AUTO_INCREMENT PRIMARY KEY,
+                        first_name VARCHAR (50),
+                        last_name VARCHAR (50)
+);
+
+
 CREATE TABLE card (
     id_card INT AUTO_INCREMENT PRIMARY KEY,
     suit INT,
     face INT,
     fk_deck INT,
-    foreign key (fk_deck) references deck(id_deck)
+    fk_player INT,
+    foreign key (fk_deck) references deck(id_deck),
+    foreign key (fk_player) references player(id_player)
 );
 
-CREATE TABLE player (
-    id_player INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR (50),
-    last_name VARCHAR (50)
-);
 
 
 CREATE TABLE game_player (

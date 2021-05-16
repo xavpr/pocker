@@ -8,4 +8,5 @@ public interface GameService {
     Game addPlayerToGame(Long idGame, Long idPlayer);
     Game removePlayerFromGame(Long idGame, Long idPlayer);
     Game addDeckToGame(Long idGame, Long idDeck);
+    void dealCard(Long idGame, Long idPlayer);
 }
