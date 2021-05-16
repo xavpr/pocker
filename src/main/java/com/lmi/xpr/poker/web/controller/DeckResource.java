@@ -1,6 +1,5 @@
 package com.lmi.xpr.poker.web.controller;
 
-import com.lmi.xpr.poker.domain.model.Deck;
 import com.lmi.xpr.poker.domain.service.DeckService;
 import com.lmi.xpr.poker.web.dto.DeckDto;
 import com.lmi.xpr.poker.web.mapper.DeckDtoMapper;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/deck")
-@Api(tags = {"PokerApi"})
+@Api(tags = {"PokerDeckApi"})
 @AllArgsConstructor
 public class DeckResource {
 
