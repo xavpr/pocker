@@ -7,4 +7,5 @@ public interface GameService {
     boolean existsById(Long idGame);
     Game addPlayerToGame(Long idGame, Long idPlayer);
     Game removePlayerFromGame(Long idGame, Long idPlayer);
+    Game addDeckToGame(Long idGame, Long idDeck);
 }

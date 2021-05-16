@@ -1,7 +1,9 @@
 package com.lmi.xpr.poker.domain.service.impl;
 
+import com.lmi.xpr.poker.domain.model.Deck;
 import com.lmi.xpr.poker.domain.model.Game;
 import com.lmi.xpr.poker.domain.model.Player;
+import com.lmi.xpr.poker.domain.repository.DeckRepository;
 import com.lmi.xpr.poker.domain.repository.GameRepository;
 import com.lmi.xpr.poker.domain.repository.PlayerRepository;
 import com.lmi.xpr.poker.domain.service.GameService;
@@ -16,6 +18,7 @@ public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
     private final PlayerRepository playerRepository;
+    private final DeckRepository deckRepository;
 
 
     @Override
@@ -33,6 +36,7 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game addPlayerToGame(Long idGame, Long idPlayer) {
         //At this level game and player should exist
+        log.info("Adding player {} to game {}", idPlayer, idGame);
         Game game = gameRepository.getById(idGame).get();
         Player player = playerRepository.getById(idPlayer).get();
         game.addPlayer(player);
@@ -42,8 +46,19 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game removePlayerFromGame(Long idGame, Long idPlayer) {
         //At this level game and player should exist
+        log.info("Removing player {} from game {}", idPlayer, idGame);
         Game game = gameRepository.getById(idGame).get();
         game.removePlayerById(idPlayer);
+        return gameRepository.saveGame(game);
+    }
+
+    @Override
+    public Game addDeckToGame(Long idGame, Long idDeck) {
+        //At this level game and player should exist
+        log.info("Adding deck {} to game {}", idDeck, idGame);
+        Game game = gameRepository.getById(idGame).get();
+        Deck deck = deckRepository.getById(idDeck).get();
+        game.addDeck(deck);
         return gameRepository.saveGame(game);
     }
 }

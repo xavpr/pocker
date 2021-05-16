@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -26,5 +27,15 @@ public class DeckRepositoryImpl implements DeckRepository {
     @Override
     public List<Deck> getAll() {
         return mapper.toModels(repository.findAll());
+    }
+
+    @Override
+    public boolean existsById(Long idDeck) {
+        return repository.existsById(idDeck);
+    }
+
+    @Override
+    public Optional<Deck> getById(Long idDeck) {
+        return Optional.ofNullable(mapper.toModel(repository.findById(idDeck).orElse(null)));
     }
 }

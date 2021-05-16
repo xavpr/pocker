@@ -7,4 +7,5 @@ import java.util.List;
 public interface DeckService {
     Deck createDeck();
     List<Deck> getAllDeck();
+    boolean existsById(Long idDeck);
 }

@@ -18,4 +18,8 @@ public class DeckEntity {
     @OneToMany(mappedBy = "deck", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CardEntity> cards;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_game")
+    private GameEntity game;
+
 }

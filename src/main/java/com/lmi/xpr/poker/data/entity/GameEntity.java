@@ -23,4 +23,7 @@ public class GameEntity {
     )
     private Set<PlayerEntity> players;
 
+    @OneToMany(mappedBy = "game")
+    private Set<DeckEntity> decks;
+
 }

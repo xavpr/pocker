@@ -4,6 +4,7 @@ package com.lmi.xpr.poker.web.controller;
 import com.lmi.xpr.poker.domain.service.GameService;
 import com.lmi.xpr.poker.web.dto.GameDto;
 import com.lmi.xpr.poker.web.mapper.GameDtoMapper;
+import com.lmi.xpr.poker.web.validator.deck.DeckExists;
 import com.lmi.xpr.poker.web.validator.game.GameExists;
 import com.lmi.xpr.poker.web.validator.player.PlayerExists;
 import io.swagger.annotations.Api;
@@ -38,6 +39,12 @@ public class GameResource {
     @ApiOperation("Remove player from a game")
     public GameDto removePlayer(@GameExists @PathVariable long id, @PlayerExists @PathVariable long idPlayer) {
         return mapper.toDto(service.addPlayerToGame(id, idPlayer));
+    }
+
+    @PutMapping("{id}/add-deck/{idDeck}")
+    @ApiOperation("Add deck to a game")
+    public GameDto addDeck(@GameExists @PathVariable long id, @DeckExists @PathVariable long idDeck) {
+        return mapper.toDto(service.addDeckToGame(id, idDeck));
     }
 
 }

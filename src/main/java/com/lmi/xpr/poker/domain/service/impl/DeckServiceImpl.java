@@ -40,4 +40,9 @@ public class DeckServiceImpl implements DeckService {
     public List<Deck> getAllDeck() {
         return deckRepository.getAll();
     }
+
+    @Override
+    public boolean existsById(Long idDeck) {
+        return deckRepository.existsById(idDeck);
+    }
 }
