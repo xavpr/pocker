@@ -13,7 +13,6 @@
 - to the application: http://localhost:8080/swagger-ui/index.html
 - to the database: http://localhost:8080/h2-console
 
-## Tradeoffs
 - 
 ## Other information
 - I used Intellij and Java JDK 15
