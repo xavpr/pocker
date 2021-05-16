@@ -11,4 +11,7 @@ public class Game {
     public void addPlayer(Player player) {
         players.add(player);
     }
+    public void removePlayerById(Long idPlayer) {
+        players.removeIf(p -> p.getIdPlayer().equals(idPlayer));
+    }
 }

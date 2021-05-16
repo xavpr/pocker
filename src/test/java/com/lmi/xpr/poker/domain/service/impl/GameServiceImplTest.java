@@ -15,6 +15,8 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -59,6 +61,23 @@ public class GameServiceImplTest {
 
         assertThat(result.getPlayers()).isNotEmpty();
         assertThat(result.getPlayers().iterator().next()).isEqualTo(player);
+    }
+
+    @Test
+    public void shouldRemovePlayerFromGame() {
+        Game game = random.nextObject(Game.class);
+        Player player = random.nextObject(Player.class);
+        game.setPlayers(Stream.of(player).collect(Collectors.toSet()));
+
+        when(gameRepository.getById(game.getIdGame())).thenReturn(Optional.of(game));
+        when(gameRepository.saveGame(game)).thenReturn(game);
+
+        service.removePlayerFromGame(game.getIdGame(), player.getIdPlayer());
+        verify(gameRepository).saveGame(captor.capture());
+
+        Game result = captor.getValue();
+
+        assertThat(result.getPlayers()).isEmpty();
     }
 
 }

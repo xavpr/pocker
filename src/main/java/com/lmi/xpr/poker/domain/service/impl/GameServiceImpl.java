@@ -38,4 +38,12 @@ public class GameServiceImpl implements GameService {
         game.addPlayer(player);
         return gameRepository.saveGame(game);
     }
+
+    @Override
+    public Game removePlayerFromGame(Long idGame, Long idPlayer) {
+        //At this level game and player should exist
+        Game game = gameRepository.getById(idGame).get();
+        game.removePlayerById(idPlayer);
+        return gameRepository.saveGame(game);
+    }
 }

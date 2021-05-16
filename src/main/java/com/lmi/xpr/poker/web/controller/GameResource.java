@@ -28,10 +28,16 @@ public class GameResource {
         return mapper.toDto(service.createGame());
     }
 
-    @PutMapping("{id}/{idPlayer}")
+    @PutMapping("{id}/add-player/{idPlayer}")
     @ApiOperation("Add player to a game")
     public GameDto addPlayer(@GameExists @PathVariable long id, @PlayerExists @PathVariable long idPlayer) {
      return mapper.toDto(service.addPlayerToGame(id, idPlayer));
+    }
+
+    @PutMapping("{id}/remove-player/{idPlayer}")
+    @ApiOperation("Remove player from a game")
+    public GameDto removePlayer(@GameExists @PathVariable long id, @PlayerExists @PathVariable long idPlayer) {
+        return mapper.toDto(service.addPlayerToGame(id, idPlayer));
     }
 
 }

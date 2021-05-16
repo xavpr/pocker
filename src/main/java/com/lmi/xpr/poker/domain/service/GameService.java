@@ -6,4 +6,5 @@ public interface GameService {
     Game createGame();
     boolean existsById(Long idGame);
     Game addPlayerToGame(Long idGame, Long idPlayer);
+    Game removePlayerFromGame(Long idGame, Long idPlayer);
 }
