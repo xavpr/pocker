@@ -16,6 +16,7 @@
 - 
 ## Other information
 - I used Intellij and Java JDK 15
+- Two players are already in database (id 1 and 2)
 - if mapstruct raises the following error in IntelliJ:
   Cannot invoke "java.net.URL.toExternalForm()" because "resource" is null
   Then add "-Djps.track.ap.dependencies=false" in File/Settings / Build, Execution, Deployment / Compiler 
