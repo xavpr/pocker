@@ -1,7 +1,9 @@
 package com.lmi.xpr.poker.domain.service.impl;
 
+import com.lmi.xpr.poker.domain.model.Deck;
 import com.lmi.xpr.poker.domain.model.Game;
 import com.lmi.xpr.poker.domain.model.Player;
+import com.lmi.xpr.poker.domain.repository.DeckRepository;
 import com.lmi.xpr.poker.domain.repository.GameRepository;
 import com.lmi.xpr.poker.domain.repository.PlayerRepository;
 import org.jeasy.random.EasyRandom;
@@ -29,6 +31,8 @@ public class GameServiceImplTest {
     private GameRepository gameRepository;
     @Spy
     private PlayerRepository playerRepository;
+    @Spy
+    private DeckRepository deckRepository;
 
     @InjectMocks
     private GameServiceImpl service;
@@ -64,20 +68,22 @@ public class GameServiceImplTest {
     }
 
     @Test
-    public void shouldRemovePlayerFromGame() {
+    public void shouldAddDeckToGame() {
         Game game = random.nextObject(Game.class);
-        Player player = random.nextObject(Player.class);
-        game.setPlayers(Stream.of(player).collect(Collectors.toSet()));
+        game.getDecks().clear();
+        Deck deck = random.nextObject(Deck.class);
 
         when(gameRepository.getById(game.getIdGame())).thenReturn(Optional.of(game));
+        when(deckRepository.getById(deck.getIdDeck())).thenReturn(Optional.of(deck));
         when(gameRepository.saveGame(game)).thenReturn(game);
 
-        service.removePlayerFromGame(game.getIdGame(), player.getIdPlayer());
+        service.addDeckToGame(game.getIdGame(), deck.getIdDeck());
         verify(gameRepository).saveGame(captor.capture());
 
         Game result = captor.getValue();
 
-        assertThat(result.getPlayers()).isEmpty();
+        assertThat(result.getDecks()).isNotEmpty();
+        assertThat(result.getDecks().iterator().next()).isEqualTo(deck);
     }
 
 }
