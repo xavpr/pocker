@@ -16,9 +16,9 @@ CREATE TABLE deck (
 );
 
 CREATE TABLE player (
-                        id_player INT AUTO_INCREMENT PRIMARY KEY,
-                        first_name VARCHAR (50),
-                        last_name VARCHAR (50)
+    id_player INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR (50),
+    last_name VARCHAR (50)
 );
 
 
@@ -26,6 +26,7 @@ CREATE TABLE card (
     id_card INT AUTO_INCREMENT PRIMARY KEY,
     suit INT,
     face INT,
+    position INT,
     fk_deck INT,
     fk_player INT,
     foreign key (fk_deck) references deck(id_deck),

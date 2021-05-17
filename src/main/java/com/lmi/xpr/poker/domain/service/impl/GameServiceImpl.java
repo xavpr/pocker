@@ -23,7 +23,6 @@ public class GameServiceImpl implements GameService {
     private final PlayerRepository playerRepository;
     private final DeckRepository deckRepository;
 
-
     @Override
     public Game createGame() {
         log.info("Creating new game");
@@ -79,6 +78,13 @@ public class GameServiceImpl implements GameService {
         log.info("Get score for game {}", idGame);
         Game game = gameRepository.getById(idGame).get();
         return game.getGameScoreByPlayer();
+    }
+
+    public void shuffle(Long idGame) {
+        log.info("Shuffle game deck {}", idGame);
+        Game game = gameRepository.getById(idGame).get();
+        game.shuffleGameDeck();
+        deckRepository.saveDecks(game.getDecks());
     }
 
 }

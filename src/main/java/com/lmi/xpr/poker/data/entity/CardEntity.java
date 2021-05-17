@@ -17,6 +17,8 @@ public class CardEntity {
 
     private Suits suit;
 
+    private Integer position;
+
     @ManyToOne
     @JoinColumn(name = "fk_deck", nullable = false)
     private DeckEntity deck;

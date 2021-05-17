@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 @AllArgsConstructor
@@ -38,4 +39,15 @@ public class DeckRepositoryImpl implements DeckRepository {
     public Optional<Deck> getById(Long idDeck) {
         return Optional.ofNullable(mapper.toModel(repository.findById(idDeck).orElse(null)));
     }
+
+    @Override
+    public void saveDecks(Set<Deck> decks) {
+        decks.stream().forEach(
+                deck -> {
+                    DeckEntity toSave = mapper.toEntity(deck);
+                    mapper.toModel(repository.save(toSave));
+                }
+        );
+    }
+
 }

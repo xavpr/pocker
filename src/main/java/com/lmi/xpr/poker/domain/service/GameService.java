@@ -13,4 +13,5 @@ public interface GameService {
     Game addDeckToGame(Long idGame, Long idDeck);
     void dealCard(Long idGame, Long idPlayer);
     List<Score> getScore(Long idGame);
+    void shuffle(Long idGame);
 }

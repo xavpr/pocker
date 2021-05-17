@@ -62,4 +62,10 @@ public class GameResource {
         return service.getScore(idGame);
     }
 
+    @GetMapping("{idGame}/shuffle")
+    @ApiOperation("Shuffle game deck")
+    public void shuffleGame(@GameExists @PathVariable long idGame) {
+        service.shuffle(idGame);
+    }
+
 }

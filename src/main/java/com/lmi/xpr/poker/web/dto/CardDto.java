@@ -9,4 +9,5 @@ public class CardDto {
     private Long idCard;
     private Suits suit;
     private Faces face;
+    private Integer position;
 }

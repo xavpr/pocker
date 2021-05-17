@@ -13,6 +13,7 @@ public class Card {
     private Faces face;
     private boolean alreadyDealt;
     private Long deckId;
+    private Integer position;
 
     public Card(Suits suit, Faces face) {
         this.suit = suit;
