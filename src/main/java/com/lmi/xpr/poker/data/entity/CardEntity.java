@@ -23,7 +23,7 @@ public class CardEntity {
     @JoinColumn(name = "fk_deck", nullable = false)
     private DeckEntity deck;
 
-    @Column(name = "fk_player")
+    @Column(name = "fk_player", insertable = false, updatable = false)
     private Long idPlayer;
 
 
