@@ -1,6 +1,7 @@
 package com.lmi.xpr.poker.web.controller;
 
 
+import com.lmi.xpr.poker.domain.model.GameDeckStatus;
 import com.lmi.xpr.poker.domain.model.Score;
 import com.lmi.xpr.poker.domain.service.GameService;
 import com.lmi.xpr.poker.web.dto.CardDto;
@@ -75,5 +76,11 @@ public class GameResource {
     @ApiOperation("Get a player's hand for a given game")
     public List<CardDto> getPlayerHandGame(@GameExists @PathVariable long idGame, @PlayerExists @PathVariable long idPlayer) {
         return cardDtoMapper.toDtos(service.getPlayerHandGame(idGame, idPlayer));
+    }
+
+    @GetMapping("{idGame}/game-deck-status")
+    @ApiOperation("Get game deck status by game id")
+    public GameDeckStatus getGameDeckStatus(@GameExists @PathVariable long idGame) {
+        return service.getGameDeckStatus(idGame);
     }
 }

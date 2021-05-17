@@ -28,7 +28,7 @@ public class DeckServiceImpl implements DeckService {
         Deck deck = new Deck();
         List<Card> cards = Arrays.stream(Suits.values())
                 .flatMap(s -> Arrays.stream(Faces.values())
-                .map(f -> new Card(s, f)))
+                .map(f -> new Card(s, f, 0)))
                 .collect(Collectors.toList());
         deck.setCards(cards);
         Deck result = deckRepository.createDeck(deck);

@@ -92,4 +92,13 @@ public class GameServiceImpl implements GameService {
         return player.getPlayerHandGameByDeckIds(game.getDeckIds());
     }
 
+    @Override
+    public GameDeckStatus getGameDeckStatus(Long idGame) {
+        log.info("Get game deck status for id {}", idGame);
+        Game game = gameRepository.getById(idGame).get();
+        GameDeckStatus status = new GameDeckStatus();
+        status.init(game.getAvailableCards());
+        return status;
+    }
+
 }

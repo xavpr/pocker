@@ -15,8 +15,9 @@ public class Card {
     private Long deckId;
     private Integer position;
 
-    public Card(Suits suit, Faces face) {
+    public Card(Suits suit, Faces face, Integer position) {
         this.suit = suit;
         this.face = face;
+        this.position = position;
     }
 }

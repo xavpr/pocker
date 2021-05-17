@@ -2,6 +2,7 @@ package com.lmi.xpr.poker.domain.service;
 
 import com.lmi.xpr.poker.domain.model.Card;
 import com.lmi.xpr.poker.domain.model.Game;
+import com.lmi.xpr.poker.domain.model.GameDeckStatus;
 import com.lmi.xpr.poker.domain.model.Score;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface GameService {
     List<Score> getScore(Long idGame);
     void shuffle(Long idGame);
     List<Card> getPlayerHandGame(Long idGame, Long idPlayer);
+    GameDeckStatus getGameDeckStatus(Long idGame);
 }
