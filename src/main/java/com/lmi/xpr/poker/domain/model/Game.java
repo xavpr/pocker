@@ -2,6 +2,7 @@ package com.lmi.xpr.poker.domain.model;
 
 import lombok.Data;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -31,6 +32,7 @@ public class Game {
         List<Long> idDecks = decks.stream().map(Deck::getIdDeck).collect(Collectors.toList());
         return players.stream()
                 .map(p -> new Score(p.getFirstName(), p.getLastName(), p.getScoreByDeckId(idDecks)))
+                .sorted(Comparator.comparingInt(Score::getScore).reversed())
                 .collect(Collectors.toList());
     }
 
