@@ -44,12 +44,17 @@ public class Game {
 
     public Optional<Card> dealCardFromDecks() {
         return decks.stream().flatMap(d -> d.getCards().stream())
-                .filter(c -> !c.isAlreadyDealt()).findFirst();
+                .filter(c -> !c.isAlreadyDealt())
+                .sorted(Comparator.comparingInt(Card::getPosition))
+                .findFirst();
     }
 
+    public List<Long> getDeckIds() {
+        return decks.stream().map(Deck::getIdDeck).collect(Collectors.toList());
+    }
 
     public List<Score> getGameScoreByPlayer() {
-        List<Long> idDecks = decks.stream().map(Deck::getIdDeck).collect(Collectors.toList());
+        List<Long> idDecks = getDeckIds();
         return players.stream()
                 .map(p -> new Score(p.getFirstName(), p.getLastName(), p.getScoreByDeckId(idDecks)))
                 .sorted(Comparator.comparingInt(Score::getScore).reversed())

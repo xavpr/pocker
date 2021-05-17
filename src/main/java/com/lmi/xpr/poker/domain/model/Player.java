@@ -23,4 +23,8 @@ public class Player {
                 .collect(Collectors.summingInt(Integer::intValue));
 
     }
+    public List<Card> getPlayerHandGameByDeckIds(List<Long> ids) {
+        return cards.stream().filter(card -> ids.contains(card.getDeckId()))
+                .collect(Collectors.toList());
+    }
 }

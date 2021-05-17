@@ -1,9 +1,6 @@
 package com.lmi.xpr.poker.domain.service.impl;
 
-import com.lmi.xpr.poker.domain.model.Deck;
-import com.lmi.xpr.poker.domain.model.Game;
-import com.lmi.xpr.poker.domain.model.Player;
-import com.lmi.xpr.poker.domain.model.Score;
+import com.lmi.xpr.poker.domain.model.*;
 import com.lmi.xpr.poker.domain.repository.DeckRepository;
 import com.lmi.xpr.poker.domain.repository.GameRepository;
 import com.lmi.xpr.poker.domain.repository.PlayerRepository;
@@ -85,6 +82,14 @@ public class GameServiceImpl implements GameService {
         Game game = gameRepository.getById(idGame).get();
         game.shuffleGameDeck();
         deckRepository.saveDecks(game.getDecks());
+    }
+
+    @Override
+    public List<Card> getPlayerHandGame(Long idGame, Long idPlayer) {
+        log.info("Shuffle game deck {}", idGame);
+        Game game = gameRepository.getById(idGame).get();
+        Player player = playerRepository.getById(idPlayer).get();
+        return player.getPlayerHandGameByDeckIds(game.getDeckIds());
     }
 
 }

@@ -3,7 +3,9 @@ package com.lmi.xpr.poker.web.controller;
 
 import com.lmi.xpr.poker.domain.model.Score;
 import com.lmi.xpr.poker.domain.service.GameService;
+import com.lmi.xpr.poker.web.dto.CardDto;
 import com.lmi.xpr.poker.web.dto.GameDto;
+import com.lmi.xpr.poker.web.mapper.CardDtoMapper;
 import com.lmi.xpr.poker.web.mapper.GameDtoMapper;
 import com.lmi.xpr.poker.web.validator.deck.DeckExists;
 import com.lmi.xpr.poker.web.validator.game.GameExists;
@@ -25,6 +27,7 @@ public class GameResource {
 
     private final GameService service;
     private final GameDtoMapper mapper;
+    private final CardDtoMapper cardDtoMapper;
 
     @PostMapping
     @ApiOperation("Create a game")
@@ -68,4 +71,9 @@ public class GameResource {
         service.shuffle(idGame);
     }
 
+    @GetMapping("{idGame}/player/{idPlayer}/hand")
+    @ApiOperation("Get a player's hand for a given game")
+    public List<CardDto> getPlayerHandGame(@GameExists @PathVariable long idGame, @PlayerExists @PathVariable long idPlayer) {
+        return cardDtoMapper.toDtos(service.getPlayerHandGame(idGame, idPlayer));
+    }
 }

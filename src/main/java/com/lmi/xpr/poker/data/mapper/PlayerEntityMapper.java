@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {CardEntityMapper.class})
 public interface PlayerEntityMapper {
     Player toModel(PlayerEntity entity);
     PlayerEntity toEntity(Player model);

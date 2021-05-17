@@ -1,5 +1,6 @@
 package com.lmi.xpr.poker.domain.service;
 
+import com.lmi.xpr.poker.domain.model.Card;
 import com.lmi.xpr.poker.domain.model.Game;
 import com.lmi.xpr.poker.domain.model.Score;
 
@@ -14,4 +15,5 @@ public interface GameService {
     void dealCard(Long idGame, Long idPlayer);
     List<Score> getScore(Long idGame);
     void shuffle(Long idGame);
+    List<Card> getPlayerHandGame(Long idGame, Long idPlayer);
 }
