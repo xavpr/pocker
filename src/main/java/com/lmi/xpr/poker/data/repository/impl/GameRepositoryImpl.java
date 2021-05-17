@@ -1,5 +1,6 @@
 package com.lmi.xpr.poker.data.repository.impl;
 
+import com.lmi.xpr.poker.data.entity.GameEntity;
 import com.lmi.xpr.poker.data.mapper.GameEntityMapper;
 import com.lmi.xpr.poker.data.repository.GameEntityRepository;
 import com.lmi.xpr.poker.domain.model.Game;
@@ -43,6 +44,19 @@ public class GameRepositoryImpl implements GameRepository {
         Game result = mapper.toModel(repository.save(mapper.toEntity(game)));
         log.info("Game successfully saved");
         return result;
+    }
+
+    @Override
+    public Game removePlayer(Long idGame, Long idPlayer) {
+        log.info("Removing player {} from game - id:{}", idPlayer, idGame);
+        GameEntity gameEntity = repository.findById(idGame).get();
+        gameEntity.removePlayerById(idPlayer);
+        return mapper.toModel(repository.save(gameEntity));
+    }
+
+    @Override
+    public void deleteGameById(Long idGame) {
+        repository.deleteById(idGame);
     }
 
 

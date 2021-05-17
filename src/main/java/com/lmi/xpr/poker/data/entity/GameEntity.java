@@ -27,4 +27,8 @@ public class GameEntity {
     @JoinColumn(name = "fk_game")
     private Set<DeckEntity> decks;
 
+    public void removePlayerById(Long idPlayer) {
+        players.removeIf(p -> p.getIdPlayer().equals(idPlayer));
+    }
+
 }

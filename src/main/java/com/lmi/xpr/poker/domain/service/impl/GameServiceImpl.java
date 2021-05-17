@@ -46,9 +46,7 @@ public class GameServiceImpl implements GameService {
     public Game removePlayerFromGame(Long idGame, Long idPlayer) {
         //At this level game and player should exist
         log.info("Removing player {} from game {}", idPlayer, idGame);
-        Game game = gameRepository.getById(idGame).get();
-        game.removePlayerById(idPlayer);
-        return gameRepository.saveGame(game);
+        return gameRepository.removePlayer(idGame, idPlayer);
     }
 
     @Override
@@ -99,6 +97,12 @@ public class GameServiceImpl implements GameService {
         GameDeckStatus status = new GameDeckStatus();
         status.init(game.getAvailableCards());
         return status;
+    }
+
+    @Override
+    public void deleteGame(Long idGame) {
+        log.info("Deleting game with id {}", idGame);
+        gameRepository.deleteGameById(idGame);
     }
 
 }

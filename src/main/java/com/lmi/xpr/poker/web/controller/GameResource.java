@@ -45,7 +45,7 @@ public class GameResource {
     @PutMapping("{idGame}/player/{idPlayer}/remove")
     @ApiOperation("Remove player from a game")
     public GameDto removePlayer(@GameExists @PathVariable long idGame, @PlayerExists @PathVariable long idPlayer) {
-        return mapper.toDto(service.addPlayerToGame(idGame, idPlayer));
+        return mapper.toDto(service.removePlayerFromGame(idGame, idPlayer));
     }
 
     @PutMapping("{idGame}/deck/{idDeck}/add")
@@ -82,5 +82,11 @@ public class GameResource {
     @ApiOperation("Get game deck status by game id")
     public GameDeckStatus getGameDeckStatus(@GameExists @PathVariable long idGame) {
         return service.getGameDeckStatus(idGame);
+    }
+
+    @DeleteMapping("{idGame}")
+    @ApiOperation("Delete by game id")
+    public void deleteGame(@GameExists @PathVariable long idGame) {
+        service.deleteGame(idGame);
     }
 }

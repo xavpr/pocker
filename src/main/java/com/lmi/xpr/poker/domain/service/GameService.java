@@ -18,4 +18,5 @@ public interface GameService {
     void shuffle(Long idGame);
     List<Card> getPlayerHandGame(Long idGame, Long idPlayer);
     GameDeckStatus getGameDeckStatus(Long idGame);
+    void deleteGame(Long idGame);
 }

@@ -9,4 +9,6 @@ public interface GameRepository {
     boolean existsById(Long idGame);
     Optional<Game> getById(Long idGame);
     Game saveGame(Game game);
+    Game removePlayer(Long idGame, Long idPlayer);
+    void deleteGameById(Long idGame);
 }

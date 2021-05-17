@@ -42,10 +42,11 @@ public class DeckRepositoryImpl implements DeckRepository {
 
     @Override
     public void saveDecks(Set<Deck> decks) {
+        //TODO fix mapper then go for saveAll
         decks.stream().forEach(
                 deck -> {
                     DeckEntity toSave = mapper.toEntity(deck);
-                    mapper.toModel(repository.save(toSave));
+                    repository.save(toSave);
                 }
         );
     }
