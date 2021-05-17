@@ -39,7 +39,7 @@ public interface DeckEntityMapper {
 
     default Card toCardModelWithDeckStatus(CardEntity entity) {
         Card card = toModel(entity);
-        card.setAlreadyDealt(entity.getPlayer() != null);
+        card.setAlreadyDealt(entity.getIdPlayer() != null);
         return card;
     }
 

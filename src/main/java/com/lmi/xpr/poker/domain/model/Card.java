@@ -12,6 +12,7 @@ public class Card {
     private Suits suit;
     private Faces face;
     private boolean alreadyDealt;
+    private Long deckId;
 
     public Card(Suits suit, Faces face) {
         this.suit = suit;

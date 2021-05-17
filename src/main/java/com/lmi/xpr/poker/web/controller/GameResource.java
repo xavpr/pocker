@@ -1,6 +1,7 @@
 package com.lmi.xpr.poker.web.controller;
 
 
+import com.lmi.xpr.poker.domain.model.Score;
 import com.lmi.xpr.poker.domain.service.GameService;
 import com.lmi.xpr.poker.web.dto.GameDto;
 import com.lmi.xpr.poker.web.mapper.GameDtoMapper;
@@ -12,6 +13,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/game")
@@ -51,6 +54,12 @@ public class GameResource {
     @ApiOperation("Deal a card from deck game to given player")
     public void dealCard(@GameExists @PathVariable long idGame, @PlayerExists @PathVariable long idPlayer) {
         service.dealCard(idGame, idPlayer);
+    }
+
+    @GetMapping("{idGame}/score")
+    @ApiOperation("Get score by game id")
+    public List<Score> getGameScore(@GameExists @PathVariable long idGame) {
+        return service.getScore(idGame);
     }
 
 }

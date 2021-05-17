@@ -21,9 +21,8 @@ public class CardEntity {
     @JoinColumn(name = "fk_deck", nullable = false)
     private DeckEntity deck;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_player")
-    private PlayerEntity player;
+    @Column(name = "fk_player")
+    private Long idPlayer;
 
 
 }

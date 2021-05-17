@@ -3,6 +3,7 @@ package com.lmi.xpr.poker.domain.service.impl;
 import com.lmi.xpr.poker.domain.model.Deck;
 import com.lmi.xpr.poker.domain.model.Game;
 import com.lmi.xpr.poker.domain.model.Player;
+import com.lmi.xpr.poker.domain.model.Score;
 import com.lmi.xpr.poker.domain.repository.DeckRepository;
 import com.lmi.xpr.poker.domain.repository.GameRepository;
 import com.lmi.xpr.poker.domain.repository.PlayerRepository;
@@ -10,6 +11,8 @@ import com.lmi.xpr.poker.domain.service.GameService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -70,4 +73,12 @@ public class GameServiceImpl implements GameService {
         player.receiveACard(game.dealCardFromDecks());
         playerRepository.savePlayer(player);
     }
+
+    @Override
+    public List<Score> getScore(Long idGame) {
+        log.info("Get score for game {}", idGame);
+        Game game = gameRepository.getById(idGame).get();
+        return game.getGameScoreByPlayer();
+    }
+
 }
